@@ -14,7 +14,7 @@ import (
 	"github.com/nrdcg/namesilo"
 )
 
-const parse = "https://ipv4.netarm.com"
+var api string
 
 func main() {
 
@@ -26,6 +26,7 @@ func main() {
 	flag.StringVar(&domain, "domain", "", "namesilo domain")
 	flag.StringVar(&hostname, "hostname", "", "namesilo dns hostname")
 	flag.StringVar(&token, "token", "", "namesilo api token")
+	flag.StringVar(&api,"api","https://api.ipify.org","ipv4 api")
 	flag.Parse()
 
 	switch {
@@ -164,7 +165,7 @@ func main() {
 }
 
 func getIP() (string, error) {
-	resp, err := http.Get(parse)
+	resp, err := http.Get(api)
 	if err != nil {
 		return "", err
 	}
